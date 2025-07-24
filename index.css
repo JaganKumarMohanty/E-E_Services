@@ -12,3 +12,19 @@ header h2{
     text-align: center;
     color: white;
 }
+.footer
+{
+   	background:#0b650c;
+   	text-align: center;
+   	width: 100%;
+   	height: auto;
+   	margin-top:20px;
+   
+} 
+.footer h3
+{
+   font-size: 18px;
+   padding:8px;
+   text-align: center;
+   color: white;
+}
