@@ -1,0 +1,14 @@
+header
+{
+  height: 50px;
+  width: 100%;
+  border:2px solid rgb(0, 255, 115);
+  border-radius: 3px;
+  background-color: rgb(47, 0, 255);;
+
+}
+
+header h2{
+    text-align: center;
+    color: white;
+}
