@@ -74,6 +74,20 @@
     </div>
   </div>
 </div>
+<!--Added Grid -->
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+    <img src="images/grid1.jpg"  class="d-block w-100" alt="Third Carousel">
+    </div>
+    <div class="col">
+    <img src="images/grid1.jpg"  class="d-block w-100" alt="Third Carousel">
+    </div>
+    <div class="col">
+    <img src="images/grid1.jpg" class="d-block w-100" alt="Third Carousel">
+    </div>
+  </div>
+</div>
 <!-- Added Footer-->
 <div class="container-fluid footer">
       <h3>© 2025 E&E Services. All Rights Reserved | Design by Jagan!</h3>
