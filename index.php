@@ -10,11 +10,13 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
+    <!-- Added Header-->
    <header>
      <div class="title">
       <h2><strong>Welcome To E&E Services</strong></h2> 
      </div>
    </header>
+   <!-- Added Navbar-->
    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">E&E</a>
@@ -58,6 +60,21 @@
     </div>
   </div>
 </nav>
+<!-- Added Caraousel-->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/carousel1.jpg" height="500px" class="d-block w-100" alt="First Carousel">
+    </div>
+    <div class="carousel-item">
+      <img src="images/carousel2.jpg" height="500px" class="d-block w-100" alt="Second Carousel">
+    </div>
+    <div class="carousel-item">
+      <img src="images/carousel3.jpg" height="500px" class="d-block w-100" alt="Third Carousel">
+    </div>
+  </div>
+</div>
+<!-- Added Footer-->
 <div class="container-fluid footer">
       <h3>© 2025 E&E Services. All Rights Reserved | Design by Jagan!</h3>
  </div>
