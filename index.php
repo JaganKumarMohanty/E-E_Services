@@ -12,7 +12,7 @@
 <body>
    <header>
      <div class="title">
-      <h2><strong>E&E Services</strong></h2> 
+      <h2><strong>Welcome To E&E Services</strong></h2> 
      </div>
    </header>
    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
@@ -41,6 +41,15 @@
         <li class="nav-item">
           <a class="nav-link active" href="#"><i class="fa fa-shopping-cart" style="font-size:24px"></i></a>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            IssueReport
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">New Issue</a></li>
+            <li><a class="dropdown-item" href="#">Fixed Issue</a></li>
+          </ul>
+        </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -50,7 +59,7 @@
   </div>
 </nav>
 <div class="container-fluid footer">
-      <h3>© 2021 V-kart . All Rights Reserved | Design by Jagan!</h3>
+      <h3>© 2025 E&E Services. All Rights Reserved | Design by Jagan!</h3>
  </div>
 
 </body>
