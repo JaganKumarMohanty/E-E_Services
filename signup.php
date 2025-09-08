@@ -11,10 +11,10 @@
       background: linear-gradient(to right, #6a11cb, #2575fc);
       height: 100vh;
       margin: 0;
-     
+     display : flex;
       justify-content: center;
       align-items: center;
-      padding: 15px;
+      
     }
     .container {
       background: white;
@@ -102,9 +102,6 @@
   </style>
 </head>
 <body>
-    <div>
-    <?php include 'header.php'; ?>
-    </div>
 
   <div class="container">
     <!-- Step 1: User Details + Password -->
