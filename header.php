@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="index.css">-->
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
@@ -61,38 +60,5 @@
     </div>
   </div>
 </nav>
-<!-- Added Caraousel-->
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/carousel1.jpg" height="500px" class="d-block w-100" alt="First Carousel">
-    </div>
-    <div class="carousel-item">
-      <img src="images/carousel2.jpg" height="500px" class="d-block w-100" alt="Second Carousel">
-    </div>
-    <div class="carousel-item">
-      <img src="images/carousel3.jpg" height="500px" class="d-block w-100" alt="Third Carousel">
-    </div>
-  </div>
-</div>
-<!--Added Grid -->
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-    <img src="images/grid1.jpg"  class="d-block w-100" alt="Third Carousel">
-    </div>
-    <div class="col">
-    <img src="images/grid1.jpg"  class="d-block w-100" alt="Third Carousel">
-    </div>
-    <div class="col">
-    <img src="images/grid1.jpg" class="d-block w-100" alt="Third Carousel">
-    </div>
-  </div>
-</div>
-<!-- Added Footer-->
-<div class="container-fluid footer">
-      <h3>© 2025 E&E Services. All Rights Reserved | Design by Jagan!</h3>
- </div>
-
 </body>
-</HTML
+</html>
