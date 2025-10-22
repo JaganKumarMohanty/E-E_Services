@@ -1,3 +1,10 @@
+<?php
+session_start();
+require 'db.php';
+
+// fetch products from DB
+$result = $conn->query("SELECT * FROM products ORDER BY id DESC");
+?>
 <!DOCTYPE html>
 <HTML>
 <head>
@@ -76,18 +83,31 @@
   </div>
 </div>
 <!--Added Grid -->
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-    <img src="images/grid1.jpg"  class="d-block w-100" alt="Third Carousel">
+<div class="container mt-4">
+    <div class="row">
+        <?php while($p = $result->fetch_assoc()): ?>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <?php if(!empty($p['image']) && file_exists('admin/uploads/'.$p['image'])): ?>
+                    <img src="admin/uploads/<?php echo htmlspecialchars($p['image']); ?>" class="card-img-top" alt="">
+                <?php else: ?>
+                    <img src="https://via.placeholder.com/400x300?text=No+Image" class="card-img-top" alt="">
+                <?php endif; ?>
+                <div class="card-body text-center">
+                    <h5 class="card-title"><?php echo htmlspecialchars($p['name']); ?></h5>
+                    <p><strong>₹ <?php echo number_format($p['price'],2); ?></strong></p>
+                    <form method="post" action="add_to_cart.php">
+                        <input type="hidden" name="product_id" value="<?php echo $p['id']; ?>">
+                        <div class="input-group mb-2">
+                            <input type="number" name="qty" value="1" min="1" class="form-control" style="max-width:90px">
+                            <button class="btn btn-primary" type="submit">Add to cart</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php endwhile; ?>
     </div>
-    <div class="col">
-    <img src="images/grid1.jpg"  class="d-block w-100" alt="Third Carousel">
-    </div>
-    <div class="col">
-    <img src="images/grid1.jpg" class="d-block w-100" alt="Third Carousel">
-    </div>
-  </div>
 </div>
 <!-- Added Footer-->
 <div class="container-fluid footer">
