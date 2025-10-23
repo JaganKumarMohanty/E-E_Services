@@ -8,6 +8,7 @@ require '../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
+    $description = $_POST['description'];
     $price = $_POST['price'];
 
     if (!empty($_FILES['image']['name'])) {
@@ -17,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image = null;
     }
 
-    $stmt = $conn->prepare("INSERT INTO products (name, price, image) VALUES (?, ?, ?)");
-    $stmt->bind_param("sds", $name, $price, $image);
+    $stmt = $conn->prepare("INSERT INTO products (name,description, price, image) VALUES (?,?, ?, ?)");
+    $stmt->bind_param("ssds", $name, $description, $price, $image);
     $stmt->execute();
     header("Location: admin_panel.php");
     exit;
@@ -36,6 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="mb-3">
             <label>Name:</label>
             <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Description:</label>
+            <input type="text" name="description" class="form-control" required>
         </div>
         <div class="mb-3">
             <label>Price:</label>

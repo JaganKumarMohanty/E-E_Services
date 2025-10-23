@@ -29,6 +29,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
         <tr>
             <td><?= $row['id'] ?></td>
             <td><?= htmlspecialchars($row['name']) ?></td>
+            <td><?= htmlspecialchars($row['description']) ?></td>
             <td><?= $row['price'] ?></td>
             <td><img src="uploads/<?= $row['image'] ?>" width="80"></td>
             <td>

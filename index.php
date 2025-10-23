@@ -56,8 +56,8 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
             IssueReport
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="new-issue.php">New Issue</a></li>
-            <li><a class="dropdown-item" href="fixed_issue.php">Fixed Issue</a></li>
+            <li><a class="dropdown-item" href="new_product_issues.php">New Issue</a></li>
+            <li><a class="dropdown-item" href="fixed_product_issues.php">Fixed Issue</a></li>
           </ul>
         </li>
       </ul>
@@ -95,6 +95,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
                 <?php endif; ?>
                 <div class="card-body text-center">
                     <h5 class="card-title"><?php echo htmlspecialchars($p['name']); ?></h5>
+                    <h5 class="card-title"><?php echo htmlspecialchars($p['description']); ?></h5>
                     <p><strong>₹ <?php echo number_format($p['price'],2); ?></strong></p>
                     <form method="post" action="add_to_cart.php">
                         <input type="hidden" name="product_id" value="<?php echo $p['id']; ?>">
