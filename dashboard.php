@@ -47,8 +47,7 @@ if (!isset($_SESSION['user_id'])) {
 <div class="container mt-5">
   <div class="profile-card text-center">
     <img src="uploads/user_avatar.jpg" alt="User Avatar" class="profile-img mb-3">
-    <h3><?= htmlspecialchars($_SESSION['name']); ?></h3>
-    <p class="text-muted"><?= htmlspecialchars($_SESSION['email']); ?></p>
+    <p class="text-muted"><?= "Welcome, " . htmlspecialchars($_SESSION['name']) . "!"; ?></p>
     <hr>
     <h5>Service Summary</h5>
     <ul class="list-group list-group-flush text-start mt-3">

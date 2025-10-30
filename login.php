@@ -14,19 +14,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die("DB connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("SELECT id, password_hash FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, name, password_hash FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows === 1) {
-            $stmt->bind_result($user_id, $password_hash);
+            $stmt->bind_result($user_id, $name, $password_hash);
             $stmt->fetch();
 
             if (password_verify($password, $password_hash)) {
                 // Login success
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['email'] = $email;
+                $_SESSION['name'] = $name;
                 header("Location: dashboard.php");
                 exit;
             } else {
