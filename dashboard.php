@@ -33,8 +33,9 @@ if (!isset($_SESSION['user_id'])) {
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Report Issue</a></li>
+        <li class="nav-item"><a class="nav-link" href="new_product_issues.php">Report Issue</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Service History</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
         <li class="nav-item"><a class="nav-link text-warning" href="logout.php">Logout</a></li>
