@@ -51,15 +51,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
         <li class="nav-item">
           <a class="nav-link active" href="cart.php"><i class="fa fa-shopping-cart" style="font-size:24px"></i></a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="issue_report.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            IssueReport
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="new_product_issues.php">New Issue</a></li>
-            <li><a class="dropdown-item" href="fixed_product_issues.php">Fixed Issue</a></li>
-          </ul>
-        </li>
+        
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
