@@ -1,110 +1,202 @@
-<?php
-session_start();
-require 'db.php';
 
-// fetch products from DB
-$result = $conn->query("SELECT * FROM products ORDER BY id DESC");
-?>
 <!DOCTYPE html>
-<HTML>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E&E Services</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="index.css">-->
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E&E Service Portal</title>
+
+<!-- BOOTSTRAP -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ---------- GLOBAL ---------- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f6f7f8;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-size: 28px;
+  font-weight: 700;
+  color: #198754 !important;
+}
+.nav-link {
+  font-weight: 500;
+  transition: 0.3s;
+}
+.nav-link:hover {
+  color: #198754 !important;
+  transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-section {
+  height: 70vh;
+  background-image: linear-gradient(rgba(25,135,84,0.40), rgba(25,135,84,0.40)),
+  url("images/car2.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+.hero-btn {
+  padding: 12px 28px;
+  font-weight: 600;
+  border-radius: 30px;
+}
+
+/* Facility cards */
+.facility-card {
+  border-radius: 20px;
+  transition: 0.5s;
+}
+.facility-card:hover {
+  transform: translateY(-10px);
+  background: #198754 !important;
+  color: white;
+}
+
+/* Location map */
+.card iframe {
+  border-radius: 16px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 1.2s ease-in-out; }
+
+/* Footer */
+.footer-top {
+  background: #198754;
+  color: white;
+  padding: 40px 0;
+}
+.footer-bottom {
+  background: #145c3f;
+  color: white;
+  padding: 10px 0;
+}
+.footer-links a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+.footer-links a:hover {
+  color: #ffe97a;
+  margin-left: 6px;
+}
+</style>
+
 </head>
 <body>
-    <!-- Added Header-->
-   <header>
-     <div class="title">
-      <h2><strong>Welcome To E&E Services</strong></h2> 
-     </div>
-   </header>
-   <!-- Added Navbar-->
-   <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.php">E&E</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="aboutus.php">About Us</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Register
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
-            <li><a class="dropdown-item" href="signin.php">Sign In</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="cart.php"><i class="fa fa-shopping-cart" style="font-size:24px"></i></a>
-        </li>
-        
+
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.php">E&E Service Portal</a>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="signup.php">User Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>
-<!-- Added Caraousel-->
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/carousel1.jpg" height="500px" class="d-block w-100" alt="First Carousel">
+
+<!-- ✅ HERO SECTION -->
+<section class="hero-section text-center fade-in">
+  <h1 class="display-3 fw-bold">Smart Products. Skilled Service. Daily ⚡</h1>
+  <p class="lead mt-3">Delivered directly from Shop to your doorstep.</p>
+  <a href="dashboard.php" class="btn btn-light hero-btn">Shop Now</a>
+</section>
+
+<!-- ✅ OUR FACILITIES -->
+<section class="container my-5">
+  <h2 class="text-center mb-4 text-success">✨ Our Facilities</h2>
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="card p-4 text-center shadow facility-card">
+        🚚 <h5 class="fw-bold mt-2">Fast Delivery</h5>
+        <p>Certified electricians. Trusted products. Prompt delivery.</p>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="images/carousel2.jpg" height="500px" class="d-block w-100" alt="Second Carousel">
+
+    <div class="col-md-4">
+      <div class="card p-4 text-center shadow facility-card">
+        🛡️ <h5 class="fw-bold mt-2">Quality Assurance</h5>
+        <p>We ensure the best quality & freshness.</p>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="images/carousel3.jpg" height="500px" class="d-block w-100" alt="Third Carousel">
+
+    <div class="col-md-4">
+      <div class="card p-4 text-center shadow facility-card">
+        💰 <h5 class="fw-bold mt-2">Affordable Prices</h5>
+        <p>Best price — no middlemen involved.</p>
+      </div>
     </div>
+
   </div>
-</div>
-<!--Added Grid -->
-<div class="container mt-4">
-    <div class="row">
-        <?php while($p = $result->fetch_assoc()): ?>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <?php if(!empty($p['image']) && file_exists('admin/uploads/'.$p['image'])): ?>
-                    <img src="admin/uploads/<?php echo htmlspecialchars($p['image']); ?>" class="card-img-top" alt="">
-                <?php else: ?>
-                    <img src="https://via.placeholder.com/400x300?text=No+Image" class="card-img-top" alt="">
-                <?php endif; ?>
-                <div class="card-body text-center">
-                    <h5 class="card-title"><?php echo htmlspecialchars($p['name']); ?></h5>
-                    <p><strong>₹ <?php echo number_format($p['price'],2); ?></strong></p>
-                    <form method="post" action="add_to_cart.php">
-                        <input type="hidden" name="product_id" value="<?php echo $p['id']; ?>">
-                        <div class="input-group mb-2">
-                            <input type="number" name="qty" value="1" min="1" class="form-control" style="max-width:90px">
-                            <button class="btn btn-primary" type="submit">Add to cart</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php endwhile; ?>
+</section>
+
+<!-- ✅ STORE LOCATIONS -->
+<section class="container my-5">
+  <h2 class="text-center mb-4 text-success">📍 Our Store Locations</h2>
+
+  <div class="row g-4">
+
+    <!-- Location 1 -->
+    <div class="col-md-6 fade-in">
+      <div class="card shadow border-0 p-0">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.11046901863!2d-122.41941558468137!3d37.77492927975902!"
+          width="100%" height="350" allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+      <h5 class="fw-bold text-center mt-3">Main Market Store</h5>
+      <p class="text-muted text-center">Near Bus Stand, City - Pincode</p>
     </div>
-</div>
-<!-- Added Footer-->
-<div class="container-fluid footer">
-      <h3>© 2025 E&E Services. All Rights Reserved | Design by Jagan!</h3>
- </div>
+
+    <!-- Location 2 -->
+    <div class="col-md-6 fade-in">
+      <div class="card shadow border-0 p-0">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.11046901863!2d-122.41941558468137!3d37.77492927975902!"
+          width="100%" height="350" allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+      <h5 class="fw-bold text-center mt-3">Branch Store</h5>
+      <p class="text-muted text-center">Near Railway Station, City - Pincode</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ✅ FOOTER -->
+<footer>
+  <div class="footer-top text-center">
+    <h4 class="footer-title">E&E Service Portal</h4>
+    <p>Innovative. Affordable. Straight to Your Door.</p>
+  </div>
+
+  <div class="footer-bottom text-center">
+    <small>© 2025 E&E Service Portal. All rights reserved.</small>
+  </div>
+</footer>
 
 </body>
-</HTML
+</html>

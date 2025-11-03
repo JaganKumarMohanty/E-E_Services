@@ -31,8 +31,8 @@
     }
     input, select {
       width: 100%;
-      padding: 14px;
-      margin: 8px 0 18px 0;
+      padding: 5px;
+      margin: 8px 0 10px 0;
       border: 1.7px solid #ddd;
       border-radius: 8px;
       font-size: 17px;
