@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         $_SESSION['user_id'] = $stmt->insert_id;
         $_SESSION['user_name'] = $name;
-        header('Location: dashboard.php'); exit;
+        header('Location: login.php'); exit;
     } else {
         $msg = 'Error: ' . $conn->error;
     }

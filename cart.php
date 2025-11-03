@@ -56,7 +56,7 @@ body {
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><span class="nav-link text-white">👋 Hello, <?php echo htmlspecialchars($_SESSION['name']); ?></span></li>
+        <li class="nav-item"><span class="nav-link text-white">👋 Hello, <?php echo htmlspecialchars($_SESSION['user_name']); ?></span></li>
         <li class="nav-item"><a class="nav-link text-white" href="index.php">Home</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="my_orders.php">My Orders</a></li>
         <li class="nav-item"><a class="nav-link text-warning fw-bold" href="cart.php">🛒 Cart</a></li>
