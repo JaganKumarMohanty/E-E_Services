@@ -118,7 +118,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 <!-- 🔷 Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <strong style="color: white;"><p class="text-muted" ><?= "Welcome, " . htmlspecialchars($_SESSION['name']) . "!"; ?></strong>
+    <strong style="color: white;"><p class="text-muted" ><?= "Welcome, " . htmlspecialchars($_SESSION['user_name']) . "!"; ?></strong>
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <div class="seachbar">
     <form class="search-container" onsubmit="handleSearch(event)">
