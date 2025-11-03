@@ -110,8 +110,8 @@ body {
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="signup.php">User Register</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.php" target="_blank">User Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php" target="_blank">Login</a></li>
       </ul>
     </div>
   </div>
