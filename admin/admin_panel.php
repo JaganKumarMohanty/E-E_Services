@@ -32,7 +32,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
           <a class="nav-link" href="admin_orders.php">All Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="farmer\admin_sales.php">Purchese status</a>
+          <a class="nav-link" href="admin_serviceRequests.php">All Service Requests</a>
         </li>
 
         <li class="nav-item">

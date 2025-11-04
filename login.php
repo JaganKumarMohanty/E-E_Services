@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($password === $row['password']) { // plain compare
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['name'];
+            $_SESSION['email'] = $email;
             header('Location: dashboard.php'); exit;
         } else {
             $msg = 'Invalid credentials';

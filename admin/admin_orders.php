@@ -6,11 +6,19 @@ if (!isset($_SESSION['admin_id'])) {
 }
 require '../db.php';
 
-// Fetch all orders
+// Handle status filter
+$status_filter = $_GET['status'] ?? '';
+$where = '';
+if ($status_filter !== '') {
+    $where = "WHERE o.status = '" . $conn->real_escape_string($status_filter) . "'";
+}
+
+// Fetch all orders with optional status filter
 $result = $conn->query("
     SELECT o.*, u.name as user_name 
     FROM product_orders o 
     JOIN users u ON o.user_id = u.id 
+    $where
     ORDER BY o.order_date DESC
 ");
 if (!$result) {
@@ -48,6 +56,22 @@ if (!$result) {
 <div class="container mt-4">
     <h2 class="mb-4 text-success">All Orders</h2>
 
+    <!-- Filter Form -->
+    <form method="GET" class="row g-3 mb-4">
+      <div class="col-md-4">
+        <select name="status" class="form-select">
+          <option value="">Filter by Status</option>
+          <option value="Pending" <?= $status_filter === 'Pending' ? 'selected' : '' ?>>Pending</option>
+          <option value="Processing" <?= $status_filter === 'Processing' ? 'selected' : '' ?>>Processing</option>
+          <option value="Delivered" <?= $status_filter === 'Delivered' ? 'selected' : '' ?>>Delivered</option>
+          <option value="Cancelled" <?= $status_filter === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary">Apply Filter</button>
+      </div>
+    </form>
+
     <?php if ($result->num_rows > 0): ?>
         <?php while($order = $result->fetch_assoc()): ?>
             <div class="card mb-3">
@@ -66,7 +90,6 @@ if (!$result) {
                         </thead>
                         <tbody>
                         <?php
-                        // Fetch order items using prepared statement
                         $stmt2 = $conn->prepare("
                             SELECT oi.qty, oi.price, p.name 
                             FROM order_items oi 
@@ -119,7 +142,7 @@ if (!$result) {
             </div>
         <?php endwhile; ?>
     <?php else: ?>
-        <div class="alert alert-info">No orders found.</div>
+        <div class="alert alert-info">No orders found for selected status.</div>
     <?php endif; ?>
 </div>
 

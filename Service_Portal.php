@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id'])) {
 <!-- 🔷 Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">ServicePortal</a>
+    <a class="navbar-brand" href="#"><?= "Welcome, " . htmlspecialchars($_SESSION['user_name']) . "!"; ?> To E&E ServicePortal</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,29 +36,13 @@ if (!isset($_SESSION['user_id'])) {
         <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="new_product_issues.php">Report Issue</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Service History</a></li>
+        <li class="nav-item"><a class="nav-link" href="service_history.php">Service History</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
         <li class="nav-item"><a class="nav-link text-warning" href="logout.php">Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- 🧑‍🔧 Profile Section -->
-<div class="container mt-5">
-  <div class="profile-card text-center">
-    <img src="uploads/user_avatar.jpg" alt="User Avatar" class="profile-img mb-3">
-    <p class="text-muted"><?= "Welcome, " . htmlspecialchars($_SESSION['name']) . "!"; ?></p>
-    <hr>
-    <h5>Service Summary</h5>
-    <ul class="list-group list-group-flush text-start mt-3">
-      <li class="list-group-item">Total Issues Reported: <strong>12</strong></li>
-      <li class="list-group-item">Last Issue: <strong>Defective Charger</strong> on <strong>2025-10-15</strong></li>
-      <li class="list-group-item">Active Service Requests: <strong>2</strong></li>
-      <li class="list-group-item">Preferred Contact Method: <strong>Email</strong></li>
-    </ul>
-  </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
