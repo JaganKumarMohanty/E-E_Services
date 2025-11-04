@@ -9,8 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("SELECT id, password FROM admins WHERE username=?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($adminId, $hashedPassword);
-    if ($stmt->fetch() && password_verify($password, $hashedPassword)) {
+    $stmt->bind_result($adminId, $storedPassword);
+    
+    if ($stmt->fetch() && $password === $storedPassword) {
         $_SESSION['admin_id'] = $adminId;
         header("Location: admin_panel.php");
         exit;
