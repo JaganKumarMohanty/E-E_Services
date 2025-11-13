@@ -6,7 +6,17 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 require 'db.php';
-$result = $conn->query("SELECT * FROM products ORDER BY id DESC");
+
+// Handle search query
+$search = $_GET['search'] ?? '';
+if ($search) {
+    $stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE CONCAT('%', ?, '%') OR description LIKE CONCAT('%', ?, '%') ORDER BY id DESC");
+    $stmt->bind_param("ss", $search, $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,12 +33,12 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
     .navbar-brand { font-weight: bold; }
     .nav-link:hover { text-decoration: underline; }
 
-    .serachbar {
+    .seachbar {
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: #333;
-      padding: 10px;
+      
     }
 
     .search-container {
@@ -121,10 +131,10 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <strong style="color: white;"><p class="text-muted"><?= "Welcome, " . htmlspecialchars($_SESSION['user_name']) . "!"; ?></strong>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="seachbar">
-      <form class="search-container" onsubmit="handleSearch(event)">
-        <input type="text" id="searchInput" placeholder="Search..." />
+      <form class="search-container" method="GET" action="">
+        <input type="text" name="search" placeholder="Search..." value="<?= htmlspecialchars($search) ?>" />
         <button type="submit">Go</button>
       </form>
     </div>

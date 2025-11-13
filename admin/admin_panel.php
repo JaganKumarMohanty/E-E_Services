@@ -26,9 +26,6 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
     <div class="collapse navbar-collapse" id="adminNavbar">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="admin_panel.php">Dashboard</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="admin_orders.php">All Orders</a>
         </li>
         <li class="nav-item">
@@ -36,11 +33,10 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="farmer\admin_purchases.php">purchese</a>
-        </li>
-
-        <li class="nav-item">
           <a class="nav-link btn btn-primary text-white ms-2" href="add_product.php">Add Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary text-white ms-2" href="kb_upload.php"> Add KB Articles</a>
         </li>
         <li class="nav-item">
           <a class="nav-link btn btn-danger text-white ms-2" href="../logout.php">Logout</a>

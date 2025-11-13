@@ -114,6 +114,7 @@ $stmt3->close();
         <li class="nav-item"><a class="nav-link" href="new_product_issues.php">Report Issue</a></li>
         <li class="nav-item"><a class="nav-link" href="service_history.php">Service History</a></li>
         <li class="nav-item"><a class="nav-link" href="feedback.php">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link" href="kb_search.php">KB Articles</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.php">Support</a></li>
         <li class="nav-item"><a class="nav-link text-warning" href="logout.php">Logout</a></li>
       </ul>
