@@ -43,7 +43,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
           <a class="nav-link btn btn-primary text-white ms-2" href="add_product.php">Add Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-danger text-white ms-2" href="logout.php">Logout</a>
+          <a class="nav-link btn btn-danger text-white ms-2" href="../logout.php">Logout</a>
         </li>
       </ul>
     </div>

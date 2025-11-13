@@ -92,23 +92,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="alert alert-success"><?= $success ?></div>
     <?php endif; ?>
     <form method="POST" enctype="multipart/form-data">
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Full Name</label>
         <input type="text" name="name" class="form-control" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Email</label>
         <input type="email" name="email" class="form-control" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Address</label>
         <input type="text" name="address" class="form-control" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Mobile Number</label>
         <input type="text" name="mobile" class="form-control" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Category</label>
         <select name="category" class="form-control" required>
           <option value="">Select Category</option>
@@ -118,11 +118,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <option value="IT Support">IT Support</option>
         </select>
       </div>
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Description</label>
         <textarea name="description" class="form-control" rows="4" placeholder="Describe your issue..." required></textarea>
       </div>
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Upload Issue Image</label>
         <input type="file" name="image" class="form-control">
       </div>

@@ -86,6 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="">-- Select Category --</option>
                 <option value="Laptop">Laptop</option>
                 <option value="Mobile">Mobile</option>
+                <option value="Headset">Headset</option>
+                <option value="Earbuds">Earbuds</option>
                 <option value="Other">Other</option>
             </select>
            </div>

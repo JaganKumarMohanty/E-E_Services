@@ -2,11 +2,9 @@
 session_start();
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    // Not logged in → redirect to login page
     header("Location: login.php");
     exit;
 }
-// fetch products from DB
 require 'db.php';
 $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 ?>
@@ -24,10 +22,10 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
     .profile-img { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 3px solid #007bff; }
     .navbar-brand { font-weight: bold; }
     .nav-link:hover { text-decoration: underline; }
-     /* search bar */
+
     .serachbar {
       display: flex;
-      justify-content: center; /* Center content horizontally */
+      justify-content: center;
       align-items: center;
       background-color: #333;
       padding: 10px;
@@ -58,13 +56,12 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
     .search-container button:hover {
       background-color: #45a049;
     }
-     /* carousel*/
+
     .carousel {
       position: relative;
       max-width: 1600px;
       margin: auto;
       overflow: hidden;
-      
     }
 
     .slides {
@@ -90,27 +87,32 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
       font-size: 18px;
     }
 
-    .prev {
-      left: 10px;
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .footer {
+      background: #0b650c;
+      text-align: center;
+      width: 100%;
     }
 
-    .next {
-      right: 10px;
+    .footer h3 {
+      font-size: 18px;
+      padding: 8px;
+      color: white;
     }
-    /*Footer */
-    .footer{
-   	background:#0b650c;
-   	text-align: center;
-   	width: 100%;
-   	height: auto;
-   
-} 
-.footer h3{
-   font-size: 18px;
-   padding:8px;
-   text-align: center;
-   color: white;
-}
+
+    .card-img-top {
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+
+    @media (max-width: 768px) {
+      .card-img-top {
+        height: 180px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -118,13 +120,13 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 <!-- 🔷 Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <strong style="color: white;"><p class="text-muted" ><?= "Welcome, " . htmlspecialchars($_SESSION['user_name']) . "!"; ?></strong>
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <strong style="color: white;"><p class="text-muted"><?= "Welcome, " . htmlspecialchars($_SESSION['user_name']) . "!"; ?></strong>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="seachbar">
-    <form class="search-container" onsubmit="handleSearch(event)">
-      <input type="text" id="searchInput" placeholder="Search..." />
-      <button type="submit">Go</button>
-    </form>
+      <form class="search-container" onsubmit="handleSearch(event)">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button type="submit">Go</button>
+      </form>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -132,7 +134,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="my_orders.php">Orders</a></li>
         <li class="nav-item"><a class="nav-link" href="Service_Portal.php">ServicePortal</a></li>
         <li class="nav-item"><a class="nav-link active" href="cart.php"><i class="fa fa-shopping-cart" style="font-size:24px"></i></a></li>
         <li class="nav-item"><a class="nav-link text-warning" href="logout.php">Logout</a></li>
@@ -140,65 +142,65 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
     </div>
   </div>
 </nav>
-<div class="carousel">
-    <div class="slides" id="slides">
-      <img src="images/car1.jpg"  alt="Slide 1">
-      <img src="images/car2.jpg"  alt="Slide 2">
-      <img src="images/car3.jpg"  alt="Slide 3">
-    </div>
-    <button class="nav-button prev" onclick="moveSlide(-1)">❮</button>
-    <button class="nav-button next" onclick="moveSlide(1)">❯</button>
-  </div>
 
-  <!--Added Grid -->
-<div class="container mt-4">
-    <div class="row">
-        <?php while($p = $result->fetch_assoc()): ?>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <?php if(!empty($p['image']) && file_exists('admin/uploads/'.$p['image'])): ?>
-                    <img src="admin/uploads/<?php echo htmlspecialchars($p['image']); ?>" class="card-img-top" alt="">
-                <?php else: ?>
-                    <img src="https://via.placeholder.com/400x300?text=No+Image" class="card-img-top" alt="">
-                <?php endif; ?>
-                <div class="card-body text-center">
-                    <h5 class="card-title"><?php echo htmlspecialchars($p['name']); ?></h5>
-                    <h5 class="card-title"><?php echo htmlspecialchars($p['description']); ?></h5>
-                    <p><strong>₹ <?php echo number_format($p['price'],2); ?></strong></p>
-                    <form method="post" action="add_to_cart.php">
-                        <input type="hidden" name="product_id" value="<?php echo $p['id']; ?>">
-                        <div class="input-group mb-2">
-                            <input type="number" name="qty" value="1" min="1" class="form-control" style="max-width:90px">
-                            <button class="btn btn-primary" type="submit">Add to cart</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php endwhile; ?>
-    </div>
+<!-- 🔄 Carousel -->
+<div class="carousel">
+  <div class="slides" id="slides">
+    <img src="images/car1.jpg" alt="Slide 1">
+    <img src="images/car2.jpg" alt="Slide 2">
+    <img src="images/car3.jpg" alt="Slide 3">
+  </div>
+  <button class="nav-button prev" onclick="moveSlide(-1)">❮</button>
+  <button class="nav-button next" onclick="moveSlide(1)">❯</button>
 </div>
-<!-- Added Footer-->
+
+<!-- 🛍️ Product Grid -->
+<div class="container mt-4">
+  <div class="row">
+    <?php while($p = $result->fetch_assoc()): ?>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <?php if(!empty($p['image']) && file_exists('admin/uploads/'.$p['image'])): ?>
+          <img src="admin/uploads/<?php echo htmlspecialchars($p['image']); ?>" class="card-img-top" alt="">
+        <?php else: ?>
+          <img src="https://via.placeholder.com/400x300?text=No+Image" class="card-img-top" alt="">
+        <?php endif; ?>
+        <div class="card-body text-center">
+          <h5 class="card-title"><?php echo htmlspecialchars($p['name']); ?></h5>
+          <h5 class="card-title"><?php echo htmlspecialchars($p['description']); ?></h5>
+          <p><strong>₹ <?php echo number_format($p['price'],2); ?></strong></p>
+          <form method="post" action="add_to_cart.php">
+            <input type="hidden" name="product_id" value="<?php echo $p['id']; ?>">
+            <div class="input-group mb-2">
+              <input type="number" name="qty" value="1" min="1" class="form-control" style="max-width:90px">
+              <button class="btn btn-primary" type="submit">Add to cart</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <?php endwhile; ?>
+  </div>
+</div>
+
+<!-- 🔻 Footer -->
 <div class="container-fluid footer">
-      <h3>© 2025 E&E Services. All Rights Reserved | Design by Jagan!</h3>
- </div>
+  <h3>© 2025 E&E Services. All Rights Reserved | Design by Jagan!</h3>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  //script for carousel
-let currentIndex = 0;
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
+  // Carousel script
+  let currentIndex = 0;
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
 
-    function moveSlide(direction) {
-      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
+  function moveSlide(direction) {
+    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
 
-    // Auto-slide every 3 seconds
-    setInterval(() => moveSlide(1), 3000);
+  setInterval(() => moveSlide(1), 3000);
 </script>
 </body>
 </html>
-
-

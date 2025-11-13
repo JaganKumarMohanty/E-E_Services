@@ -4,6 +4,46 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
+
+require_once 'db.php';
+
+$user_id = $_SESSION['user_id'];
+$last_service = "N/A";
+$next_booking = "N/A";
+$total_issues = 0;
+
+// Last service
+$sql = "SELECT category FROM service_requests WHERE user_id = ? ORDER BY created_at DESC LIMIT 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($service_type);
+if ($stmt->fetch()) {
+    $last_service = $service_type;
+}
+$stmt->close();
+
+// Next booking
+$sql2 = "SELECT created_at FROM service_requests WHERE user_id = ? AND created_at > CURDATE() ORDER BY created_at ASC LIMIT 1";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bind_param("i", $user_id);
+$stmt2->execute();
+$stmt2->bind_result($booking_date);
+if ($stmt2->fetch()) {
+    $next_booking = date("j M Y", strtotime($booking_date));
+}
+$stmt2->close();
+
+// Total issues
+$sql3 = "SELECT COUNT(*) FROM service_requests WHERE user_id = ?";
+$stmt3 = $conn->prepare($sql3);
+$stmt3->bind_param("i", $user_id);
+$stmt3->execute();
+$stmt3->bind_result($issue_count);
+if ($stmt3->fetch()) {
+    $total_issues = $issue_count;
+}
+$stmt3->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,13 +65,10 @@ if (!isset($_SESSION['user_id'])) {
       border-radius: 12px;
       padding: 30px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 3px solid #007bff;
+    .profile-card:hover {
+      transform: translateY(-5px);
     }
     .navbar-brand {
       font-weight: bold;
@@ -43,22 +80,19 @@ if (!isset($_SESSION['user_id'])) {
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 20px;
-      color: #333;
+      color: #007bff;
     }
-    .card-box {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: 0.3s;
-    }
-    .card-box:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .list-group-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
     }
     .btn-custom {
       background-color: #007bff;
       color: white;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
     .btn-custom:hover {
       background-color: #0056b3;
@@ -77,10 +111,10 @@ if (!isset($_SESSION['user_id'])) {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="new_product_issues.php">Report Issue</a></li>
         <li class="nav-item"><a class="nav-link" href="service_history.php">Service History</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+        <li class="nav-item"><a class="nav-link" href="feedback.php">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.php">Support</a></li>
         <li class="nav-item"><a class="nav-link text-warning" href="logout.php">Logout</a></li>
       </ul>
     </div>
@@ -92,24 +126,24 @@ if (!isset($_SESSION['user_id'])) {
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="profile-card text-center">
-        <h3><?= htmlspecialchars($_SESSION['user_name']); ?></h3>
-        <p class="text-muted">Registered User | Electronic & Electrician Services</p>
-        <hr>
+        <h3 class="mb-2"><?= htmlspecialchars($_SESSION['user_name']); ?></h3>
+        <p class="text-muted mb-3">👤 Registered User | Electronic & Electrician Services</p>
+        <hr class="mb-4">
         <div class="row text-start">
           <div class="col-md-6">
-            <h5 class="section-title">Your Services</h5>
+            <h5 class="section-title">🔧 Your Services</h5>
             <ul class="list-group">
-              <li class="list-group-item">Last Service: AC Repair</li>
-              <li class="list-group-item">Next Booking: 1 Nov 2025</li>
-              <li class="list-group-item">Total Issues Reported: 5</li>
+              <li class="list-group-item"><span>🛠️</span> Last Service: <?= htmlspecialchars($last_service); ?></li>
+              <li class="list-group-item"><span>📅</span> Next Booking: <?= htmlspecialchars($next_booking); ?></li>
+              <li class="list-group-item"><span>📊</span> Total Issues Reported: <?= htmlspecialchars($total_issues); ?></li>
             </ul>
           </div>
           <div class="col-md-6">
-            <h5 class="section-title">Quick Actions</h5>
+            <h5 class="section-title">⚡ Quick Actions</h5>
             <div class="d-grid gap-2">
-              <a href="new_product_issues.php" class="btn btn-custom">Report New Issue</a>
-              <a href="service_history.php" class="btn btn-outline-primary">View Service History</a>
-              <a href="#" class="btn btn-outline-secondary">Contact Support</a>
+              <a href="new_product_issues.php" class="btn btn-custom">📝 Report New Issue</a>
+              <a href="service_history.php" class="btn btn-outline-primary">📜 View Service History</a>
+              <a href="contact.php" class="btn btn-outline-secondary">📞 Contact Support</a>
             </div>
           </div>
         </div>

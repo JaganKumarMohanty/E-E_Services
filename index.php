@@ -162,10 +162,7 @@ body {
     <!-- Location 1 -->
     <div class="col-md-6 fade-in">
       <div class="card shadow border-0 p-0">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.11046901863!2d-122.41941558468137!3d37.77492927975902!"
-          width="100%" height="350" allowfullscreen loading="lazy">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7506.707324625056!2d84.62221909910603!3d19.824983285764862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a22bfa08c9640a5%3A0x4922be6eb8eb85fc!2sBanka%2C%20Odisha%20761119!5e0!3m2!1sen!2sin!4v1762933648880!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <h5 class="fw-bold text-center mt-3">Main Market Store</h5>
       <p class="text-muted text-center">Near Bus Stand, City - Pincode</p>
@@ -174,10 +171,7 @@ body {
     <!-- Location 2 -->
     <div class="col-md-6 fade-in">
       <div class="card shadow border-0 p-0">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.11046901863!2d-122.41941558468137!3d37.77492927975902!"
-          width="100%" height="350" allowfullscreen loading="lazy">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60246.47405405489!2d84.76705710052455!3d19.308240527616842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3d500ef1cb60ad%3A0x5b75778874294ff!2sBrahmapur%2C%20Odisha!5e0!3m2!1sen!2sin!4v1762933900633!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <h5 class="fw-bold text-center mt-3">Branch Store</h5>
       <p class="text-muted text-center">Near Railway Station, City - Pincode</p>
